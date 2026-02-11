@@ -1,48 +1,50 @@
 from computer import *
 class ResaleShop:
 
-    # What attributes will it need?
+    #attributes
     inventory: list = []
-    name_inventory:list = []
 
     # How will you set up your constructor?
     # Remember: in python, all constructors have the same name (__init__)
-    def __init__(self, inventory: list, name: list):
+    def __init__(self, inventory: list):
        self.inventory = inventory
-       self.name_inventory = name
-
-    # What methods will you need?
-    #def buy(self)
-        #call compuer() constructor 
-        #to create a new computer instance 
-
-        #call inventory.append to add the 
-        #new computer instance ot the inventory
-
-    def buy(self, description: str, processor: str, hard_drive: int,
-                memory: int, OS: str, year: int, price: int):
-        new_computer:Computer = Computer( description, processor , hard_drive, memory, OS , year, price)
-        self.name_inventory.append(f"{description}")
-        self.inventory.append(new_computer)
-        print("Buying:", description)
-        return self.name_inventory
-
-    def sell(self, computer_number_in_list: int):
-        computer_number_in_list -= 1
-        print("Selling:",self.name_inventory[computer_number_in_list] )
-        del self.name_inventory[computer_number_in_list]
-        del self.inventory[computer_number_in_list]
-        return self.name_inventory
     
-    def refurbish(self, )
+
+    def buy(self, name: str, description: str):
+        
+        if name in self.inventory: 
+            return "You already own that!"
+        else: 
+            self.inventory.append(name)
+            print("Buying:", description)
+            return description
+
+    def sell(self, number: int, name: str, description: str):
+        
+        if name in self.inventory: 
+            number -= 1
+            del self.inventory[number]
+            del name
+            print("Selling:", description )
+            return f"{description} sold!"
+        else: 
+            return ("You don't own that!")
+    
+    def refurbish(self, computer, os: str, price: int):
+        if computer in self.inventory: 
+            computer.os_change(os)
+            computer.update_price(price)
+            print ("Refurbishing Computer")
+            return computer.operating_system, computer.update_price
+        else: 
+            return "You don't own this!"
+
+
+
 
 def main():
-    TheShop: ResaleShop = ResaleShop([],[])
-    print(TheShop.inventory)
-    print(TheShop.buy("Mac Pro","Del", 30, 23, "haydens", 2007, 20))
-    print(TheShop.buy("Windows","hello", 30, 23, "hayden", 2008, 20))
-    print(TheShop.sell(1))
-    print(TheShop.inventory)
+    theShop: ResaleShop = ResaleShop([])
+    theComputer:Computer = Computer("hi", "heya", 13, 23, "haydens", 2007, 0)
 
-main()
-
+if __name__ == "__main__":
+    main()

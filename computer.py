@@ -1,6 +1,6 @@
 class Computer:
 
-    # What attributes will it need?
+    #attributes
     description: str = ""
     processor_type: str = ""
     hard_drive_capacity: int = 0
@@ -9,24 +9,26 @@ class Computer:
     year_made: int = 0
     price: int = 0 
 
-    # How will you set up your constructor?
-    # Remember: in python, all constructors have the same name (__init__)
+    #The computer constructor
     def __init__(self, description: str, processor: str, hard_drive: int,
                 memory: int, OS: str, year: int, price: int):
         self.description = description 
-        self.processor = processor
+        self.processor_type = processor
         self.hard_drive_capacity = hard_drive
         self.memory = memory 
         self.operating_system = OS
         self.year_made = year
         self.price = price
 
-    # What methods will you need?
+    #The methods use: computer info, os change, price change
 
     def computer_info (self):
-         return f"{self.description} -- Processor Type: {self.processor_type} Hard Drive Capacity: {self.hard_drive_capacity} Memory: {self.memory} Operating System: {self.operating_system} Made: {self.year_made} Price:  {self.price}"
+        if self == None: 
+             print("no!")
+        else:
+            return f"{self.description} -- Processor Type: {self.processor_type} Hard Drive Capacity: {self.hard_drive_capacity} Memory: {self.memory} Operating System: {self.operating_system} Made: {self.year_made} Price:  {self.price}"
     
-    def refurbish(self, new_os: str):
+    def os_change(self, new_os: str):
         self.operating_system = new_os
         return self.operating_system
     
@@ -34,7 +36,7 @@ class Computer:
         self.price = new_price
         return self.price
 
-
+#the main part of the code
 def main(): 
     myComputer:Computer = Computer("hi", "heya", 13, 23, "haydens", 2007, 0)
     print(myComputer.price)
